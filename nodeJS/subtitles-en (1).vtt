@@ -1,0 +1,1537 @@
+WEBVTT
+
+1
+00:00:03.620 --> 00:00:09.015
+I'm sure you have one or more social media accounts.
+
+2
+00:00:09.015 --> 00:00:13.920
+Be it Facebook, Twitter, YouTube, Google, GitHub,
+
+3
+00:00:13.920 --> 00:00:19.760
+or many other such service providers, where you registered phone and account.
+
+4
+00:00:19.760 --> 00:00:22.545
+Now, these service providers in turn,
+
+5
+00:00:22.545 --> 00:00:27.480
+are willing to provide authentication services on your behalf.
+
+6
+00:00:27.480 --> 00:00:32.880
+So, for example, you see the proliferation of a number of websites
+
+7
+00:00:32.880 --> 00:00:37.440
+and mobile applications where you are allowed to login
+
+8
+00:00:37.440 --> 00:00:40.260
+using your social media accounts.
+
+9
+00:00:40.260 --> 00:00:42.805
+Now, how does this actually work?
+
+10
+00:00:42.805 --> 00:00:47.270
+Many of these social media account providers act
+
+11
+00:00:47.270 --> 00:00:53.945
+as authentication service providers using a protocol called as OAuth.
+
+12
+00:00:53.945 --> 00:01:00.660
+We'll look at OAuth, and how it enables these third-party authentication providers
+
+13
+00:01:00.660 --> 00:01:04.995
+to provide authentication on your behalf,
+
+14
+00:01:04.995 --> 00:01:14.183
+and allow you to log into other services using their social media accounts.
+
+15
+00:01:14.183 --> 00:01:18.510
+I'm sure you might have heard in the passing about OAuth 1 and OAuth 2,
+
+16
+00:01:18.510 --> 00:01:21.370
+and might have heard from people saying
+
+17
+00:01:21.370 --> 00:01:24.669
+that Facebook provides OAuth 2 based authentication,
+
+18
+00:01:24.669 --> 00:01:28.450
+or Google provides OAuth 2 based authentication and so on.
+
+19
+00:01:28.450 --> 00:01:29.800
+I'm sure you must be wondering,
+
+20
+00:01:29.800 --> 00:01:35.240
+what exactly are these OAuth1 and OAuth 2 meant to be?
+
+21
+00:01:35.240 --> 00:01:40.090
+Now, OAuth1 and OAuth 2 are authorization frameworks
+
+22
+00:01:40.090 --> 00:01:42.920
+that are based on open standards.
+
+23
+00:01:42.920 --> 00:01:46.110
+And these can be used over the internet to authenticate
+
+24
+00:01:46.110 --> 00:01:50.375
+your identity to many websites or mobile applications.
+
+25
+00:01:50.375 --> 00:01:52.475
+Now, when you use these services,
+
+26
+00:01:52.475 --> 00:01:56.470
+you are depending on one of the social media accounts like Facebook,
+
+27
+00:01:56.470 --> 00:01:58.525
+Google, Twitter, Microsoft, Instagram,
+
+28
+00:01:58.525 --> 00:02:02.380
+GitHub, DigitalOcean, and many more,
+
+29
+00:02:02.380 --> 00:02:06.915
+who provide these authentication services for others to make use of.
+
+30
+00:02:06.915 --> 00:02:10.465
+These authentication service providers promise to
+
+31
+00:02:10.465 --> 00:02:15.310
+the users of these authentication service that they will authenticate the identity
+
+32
+00:02:15.310 --> 00:02:18.535
+of the user based upon their submission of
+
+33
+00:02:18.535 --> 00:02:24.100
+their credentials for these social media services.
+
+34
+00:02:24.100 --> 00:02:28.630
+Now, there is a complementary service OpenID.
+
+35
+00:02:28.630 --> 00:02:34.220
+But, of course, not related to OAuth but provides similar kind of service.
+
+36
+00:02:34.220 --> 00:02:38.005
+But most standard social media service providers,
+
+37
+00:02:38.005 --> 00:02:39.835
+as you'll see listed here,
+
+38
+00:02:39.835 --> 00:02:44.290
+provide OAuth 2 based services these days.
+
+39
+00:02:44.290 --> 00:02:48.760
+Now, as I mentioned, OAuth1 and OAuth 2 are authentication protocols,
+
+40
+00:02:48.760 --> 00:02:53.010
+and OAuth 1 was the first protocol that came into being.
+
+41
+00:02:53.010 --> 00:02:55.165
+This was evolved from Twitter,
+
+42
+00:02:55.165 --> 00:02:58.725
+Blaine Cook being the person behind it,
+
+43
+00:02:58.725 --> 00:03:04.330
+and this is documented in the Internet Engineering Task Force, RFC 5849.
+
+44
+00:03:04.330 --> 00:03:08.235
+So, if you want to read the gory details of how these protocols work,
+
+45
+00:03:08.235 --> 00:03:11.350
+that is the place to find that.
+
+46
+00:03:11.350 --> 00:03:18.430
+OAuth 2 protocol evolved from OAuth 1 to make it more simpler,
+
+47
+00:03:18.430 --> 00:03:23.420
+and to provide a simpler way for client development.
+
+48
+00:03:23.420 --> 00:03:29.050
+And this is documented in IETF RFC 6749 and thereafter,
+
+49
+00:03:29.050 --> 00:03:35.975
+another bearer token usage came about in IETF RFC 6750.
+
+50
+00:03:35.975 --> 00:03:38.155
+Now, from our perspective,
+
+51
+00:03:38.155 --> 00:03:42.926
+we don't really want to go into details of how these protocols actually work.
+
+52
+00:03:42.926 --> 00:03:45.640
+Instead, all we are interested in that is,
+
+53
+00:03:45.640 --> 00:03:51.505
+how do we leverage these for user authentication within our web application,
+
+54
+00:03:51.505 --> 00:03:53.460
+or within our mobile application,
+
+55
+00:03:53.460 --> 00:03:56.215
+when we need to authenticate the user to
+
+56
+00:03:56.215 --> 00:03:59.965
+the Express server that we have been building on so far?
+
+57
+00:03:59.965 --> 00:04:04.330
+Now, we'll primarily concentrate on OAuth 2,
+
+58
+00:04:04.330 --> 00:04:05.710
+because in the exercise,
+
+59
+00:04:05.710 --> 00:04:10.960
+we will look at the use of Facebook as an OAuth 2 authentication service provider,
+
+60
+00:04:10.960 --> 00:04:13.870
+and here, we need to understand
+
+61
+00:04:13.870 --> 00:04:19.810
+a few terms to see how exactly this OAuth 2 protocol works.
+
+62
+00:04:19.810 --> 00:04:25.065
+At least, the bare-bone details of how the protocol itself functions.
+
+63
+00:04:25.065 --> 00:04:26.995
+Now, in case of OAuth 2,
+
+64
+00:04:26.995 --> 00:04:30.440
+we always talk about a resource ownership.
+
+65
+00:04:30.440 --> 00:04:32.200
+Now in this case,
+
+66
+00:04:32.200 --> 00:04:34.810
+the resource that I'm referring to is not
+
+67
+00:04:34.810 --> 00:04:37.870
+the resource that is stored on the Express server.
+
+68
+00:04:37.870 --> 00:04:39.655
+Instead, the resource that we are referring to here,
+
+69
+00:04:39.655 --> 00:04:42.055
+is the identity of the user.
+
+70
+00:04:42.055 --> 00:04:45.760
+Now, any server, like the Express server that we have been building,
+
+71
+00:04:45.760 --> 00:04:48.310
+wants to get access to this resource,
+
+72
+00:04:48.310 --> 00:04:50.000
+that is your identity.
+
+73
+00:04:50.000 --> 00:04:51.760
+Now, where is your identity?
+
+74
+00:04:51.760 --> 00:04:54.160
+Your identity is stored on one of
+
+75
+00:04:54.160 --> 00:04:58.457
+those social media authentication service providers like Facebook and so on,
+
+76
+00:04:58.457 --> 00:05:03.140
+because you have already created an account on these social media sites.
+
+77
+00:05:03.140 --> 00:05:06.920
+So, your information or your identity information or
+
+78
+00:05:06.920 --> 00:05:11.020
+your profile information is stored at Facebook, for example.
+
+79
+00:05:11.020 --> 00:05:15.550
+Now, your Express server wants to get access to your identity and
+
+80
+00:05:15.550 --> 00:05:20.650
+verify that it is really you that is trying to access the Express server.
+
+81
+00:05:20.650 --> 00:05:22.000
+So, in this case,
+
+82
+00:05:22.000 --> 00:05:24.690
+the Express server that we have developed,
+
+83
+00:05:24.690 --> 00:05:27.390
+acts as the client application.
+
+84
+00:05:27.390 --> 00:05:29.170
+So, this is where the client application,
+
+85
+00:05:29.170 --> 00:05:33.265
+which is the website or the mobile app that wants
+
+86
+00:05:33.265 --> 00:05:38.905
+access to the resource server in order to obtain the information about you.
+
+87
+00:05:38.905 --> 00:05:41.530
+What is a resource server that we're talking about?
+
+88
+00:05:41.530 --> 00:05:45.730
+This is the Facebook OAuth authentication server,
+
+89
+00:05:45.730 --> 00:05:49.870
+which also provides your profile information on request.
+
+90
+00:05:49.870 --> 00:05:54.490
+Now, of course, you won't randomly keep distributing your profile information.
+
+91
+00:05:54.490 --> 00:06:00.370
+Instead, you want to be able to verify that you are providing access to
+
+92
+00:06:00.370 --> 00:06:08.250
+your profile information to an authenticated service provider or an authenticated server.
+
+93
+00:06:08.250 --> 00:06:12.610
+Now, this is where your client application or the Express server here,
+
+94
+00:06:12.610 --> 00:06:18.535
+for example, will register on Facebook with an account saying that I am operating an app,
+
+95
+00:06:18.535 --> 00:06:25.780
+and I want to register myself as a potential source which can
+
+96
+00:06:25.780 --> 00:06:29.680
+approach you to authenticate users when they provide
+
+97
+00:06:29.680 --> 00:06:33.859
+access to their profile that is stored on your site.
+
+98
+00:06:33.859 --> 00:06:35.335
+So, the Express server,
+
+99
+00:06:35.335 --> 00:06:37.645
+in this case acting as the client application,
+
+100
+00:06:37.645 --> 00:06:45.790
+will register itself on Facebook and obtain a ClientID and a client secret from Facebook.
+
+101
+00:06:45.790 --> 00:06:48.955
+Now, when the Express server registers on Facebook,
+
+102
+00:06:48.955 --> 00:06:52.240
+you need to have an account on Facebook,
+
+103
+00:06:52.240 --> 00:06:53.950
+an authenticated account on Facebook,
+
+104
+00:06:53.950 --> 00:06:59.030
+which you will use to set up this app on Facebook.
+
+105
+00:06:59.030 --> 00:07:01.450
+So, once you register yourself,
+
+106
+00:07:01.450 --> 00:07:06.680
+then you will get access to a ClientID and a client secret.
+
+107
+00:07:06.680 --> 00:07:08.650
+Now, the resource server,
+
+108
+00:07:08.650 --> 00:07:12.310
+as I mentioned, is the server that is hosting the protected data.
+
+109
+00:07:12.310 --> 00:07:18.665
+Protected data meaning the profile of the user that wants to access the Express server.
+
+110
+00:07:18.665 --> 00:07:22.300
+So, the Express server wants to access this resource server,
+
+111
+00:07:22.300 --> 00:07:28.415
+and get hold of the profile data of the user that wants to access the Express server.
+
+112
+00:07:28.415 --> 00:07:31.265
+So, you see the relationship here.
+
+113
+00:07:31.265 --> 00:07:33.355
+So, when I talk about a client application,
+
+114
+00:07:33.355 --> 00:07:36.535
+I don't mean their front-end application,
+
+115
+00:07:36.535 --> 00:07:40.000
+but their Express server that is trying to provide you
+
+116
+00:07:40.000 --> 00:07:44.190
+access to resources that it has on its site.
+
+117
+00:07:44.190 --> 00:07:45.635
+But the Express server,
+
+118
+00:07:45.635 --> 00:07:48.940
+in order to enable you to access,
+
+119
+00:07:48.940 --> 00:07:53.200
+will need access to your Facebook resource server which
+
+120
+00:07:53.200 --> 00:07:58.655
+will authenticate you and provide your profile information to the Express server.
+
+121
+00:07:58.655 --> 00:08:01.375
+So, the resource server that I'm talking about here,
+
+122
+00:08:01.375 --> 00:08:06.190
+is the Facebook's OAuth 2 authentication server
+
+123
+00:08:06.190 --> 00:08:11.681
+plus the resource server that gives you access to the profile information of the user.
+
+124
+00:08:11.681 --> 00:08:16.180
+And the authorization server is the server that will
+
+125
+00:08:16.180 --> 00:08:19.210
+authorize somebody to access
+
+126
+00:08:19.210 --> 00:08:22.825
+the resource server in order to retrieve the profile information.
+
+127
+00:08:22.825 --> 00:08:27.375
+Now, the user is the one that has the profile information on the resource server.
+
+128
+00:08:27.375 --> 00:08:30.610
+The user should authorize the Express server to go
+
+129
+00:08:30.610 --> 00:08:34.035
+to this resource server to fetch the profile information.
+
+130
+00:08:34.035 --> 00:08:37.000
+But if the user needs to authorize the Express server,
+
+131
+00:08:37.000 --> 00:08:40.045
+the user needs to log into the Facebook account,
+
+132
+00:08:40.045 --> 00:08:45.115
+and then obtaining information from Facebook called as an access token,
+
+133
+00:08:45.115 --> 00:08:48.995
+which the user then will pass on to Express server.
+
+134
+00:08:48.995 --> 00:08:54.750
+Now, when the access token is obtained from Facebook through the OAuth 2 protocol,
+
+135
+00:08:54.750 --> 00:08:58.090
+the access token will be issued in terms
+
+136
+00:08:58.090 --> 00:09:01.675
+of allowing this client application or the Express server,
+
+137
+00:09:01.675 --> 00:09:04.885
+which is already registered on Facebook saying that
+
+138
+00:09:04.885 --> 00:09:08.020
+this client server I will authorize to
+
+139
+00:09:08.020 --> 00:09:15.265
+access their profile information from their Facebook OAuth service provider.
+
+140
+00:09:15.265 --> 00:09:18.290
+So, again, this is a bit confusing.
+
+141
+00:09:18.290 --> 00:09:20.940
+We'll see a diagram where this flow of
+
+142
+00:09:20.940 --> 00:09:24.360
+information is explained a bit more clearly to you.
+
+143
+00:09:24.360 --> 00:09:32.380
+One point that I just mentioned is about an OAuth token or the access token.
+
+144
+00:09:32.380 --> 00:09:34.090
+What is this access token?
+
+145
+00:09:34.090 --> 00:09:38.675
+The access token is something that the authorization server issues for you.
+
+146
+00:09:38.675 --> 00:09:40.620
+Which authorization server?
+
+147
+00:09:40.620 --> 00:09:44.100
+This is the third party OAuth 2 authorization server,
+
+148
+00:09:44.100 --> 00:09:46.668
+Facebook server, in this example.
+
+149
+00:09:46.668 --> 00:09:51.130
+So they're Express server application.
+
+150
+00:09:51.130 --> 00:09:54.485
+Now, you, as their front end user,
+
+151
+00:09:54.485 --> 00:09:58.070
+wants to access something from the Express server application.
+
+152
+00:09:58.070 --> 00:10:02.150
+The Express server application will tell you that you authenticate
+
+153
+00:10:02.150 --> 00:10:06.666
+yourself from Facebook and then obtain access token from Facebook.
+
+154
+00:10:06.666 --> 00:10:09.770
+This access token is issued to
+
+155
+00:10:09.770 --> 00:10:16.330
+the front-end user from Facebook when the user logs into their Facebook account.
+
+156
+00:10:16.330 --> 00:10:21.155
+Now this access token is issued in the name of the client application,
+
+157
+00:10:21.155 --> 00:10:25.060
+Express server, which has already registered on Facebook.
+
+158
+00:10:25.060 --> 00:10:30.485
+So, in order for the user to access Facebook to obtain his access token,
+
+159
+00:10:30.485 --> 00:10:36.580
+the user requires the client ID of the client application or the Express application.
+
+160
+00:10:36.580 --> 00:10:39.755
+So this client ID is embedded in
+
+161
+00:10:39.755 --> 00:10:44.460
+the front-end application that this Express server will serve up for you.
+
+162
+00:10:44.460 --> 00:10:47.915
+So Express server is serving up a website that you are accessing,
+
+163
+00:10:47.915 --> 00:10:50.820
+then that website will contain code where
+
+164
+00:10:50.820 --> 00:10:56.597
+the client ID of that Express server is already embedded in there.
+
+165
+00:10:56.597 --> 00:11:00.110
+One more piece of information that I mentioned is a client secret.
+
+166
+00:11:00.110 --> 00:11:03.855
+Now, in the authentication flow that I'm going to talk about,
+
+167
+00:11:03.855 --> 00:11:07.640
+the client secret will be never revealed to anybody.
+
+168
+00:11:07.640 --> 00:11:11.700
+The client secret will be only on the Express server-side.
+
+169
+00:11:11.700 --> 00:11:15.335
+Back when the Express server tries to authenticate and
+
+170
+00:11:15.335 --> 00:11:20.600
+obtain access to the user's profile from Facebook,
+
+171
+00:11:20.600 --> 00:11:23.795
+the client application, the Express server will
+
+172
+00:11:23.795 --> 00:11:27.490
+send both the client ID and the client secret,
+
+173
+00:11:27.490 --> 00:11:32.555
+together with the access token that the user supplies to it to Facebook.
+
+174
+00:11:32.555 --> 00:11:34.988
+And Facebook, in turn,
+
+175
+00:11:34.988 --> 00:11:38.945
+authorizes their client application to access
+
+176
+00:11:38.945 --> 00:11:43.935
+the resource server in order to obtain the user's profile data.
+
+177
+00:11:43.935 --> 00:11:50.390
+And once the user's profile data is obtained from the Facebook resource server,
+
+178
+00:11:50.390 --> 00:11:54.530
+then my Express server is going to create an account
+
+179
+00:11:54.530 --> 00:11:59.383
+for this particular user who has logged them with their Facebook account.
+
+180
+00:11:59.383 --> 00:12:05.995
+And then, subsequently, supply a JSON web token to the user,
+
+181
+00:12:05.995 --> 00:12:09.190
+which the user can then use in order to access
+
+182
+00:12:09.190 --> 00:12:12.530
+the resources that are stored on the Express server.
+
+183
+00:12:12.530 --> 00:12:15.040
+So, again, to summarize this,
+
+184
+00:12:15.040 --> 00:12:20.387
+I have a diagram here to explain this to you in a bit more detail.
+
+185
+00:12:20.387 --> 00:12:22.000
+In addition to this,
+
+186
+00:12:22.000 --> 00:12:24.225
+there is also a refresh token.
+
+187
+00:12:24.225 --> 00:12:29.910
+When an access token is issued by the Facebook OAuth 2 server,
+
+188
+00:12:29.910 --> 00:12:31.875
+the access token has a limited lifetime.
+
+189
+00:12:31.875 --> 00:12:34.750
+After that, the access token will become invalid.
+
+190
+00:12:34.750 --> 00:12:39.203
+So the access token has to be kept confidential.
+
+191
+00:12:39.203 --> 00:12:43.285
+So all this exchange of tokens between the different sites
+
+192
+00:12:43.285 --> 00:12:48.040
+will be done in an encrypted matter using HTTPS protocol.
+
+193
+00:12:48.040 --> 00:12:50.980
+So make sure that when you're sending your access token from
+
+194
+00:12:50.980 --> 00:12:56.838
+your user front-end application to the Express server,
+
+195
+00:12:56.838 --> 00:13:02.146
+you will only send the access token through HTTPS, not HTTP.
+
+196
+00:13:02.146 --> 00:13:04.930
+This is very important because you don't
+
+197
+00:13:04.930 --> 00:13:08.110
+want your access token to be revealed to anybody because anybody
+
+198
+00:13:08.110 --> 00:13:10.960
+who can get one of your access token can pretend to be
+
+199
+00:13:10.960 --> 00:13:15.130
+their client application and then get access to your user profile.
+
+200
+00:13:15.130 --> 00:13:16.820
+So that is very important.
+
+201
+00:13:16.820 --> 00:13:20.005
+Now, since the access token has a limited lifetime,
+
+202
+00:13:20.005 --> 00:13:22.495
+there is also a corresponding refresh token,
+
+203
+00:13:22.495 --> 00:13:27.550
+which can be used to refresh an expired access token.
+
+204
+00:13:27.550 --> 00:13:30.790
+Now, in the kind of flow that we are going to be
+
+205
+00:13:30.790 --> 00:13:35.500
+using with our application in the exercise,
+
+206
+00:13:35.500 --> 00:13:38.285
+we will not be able to use the refresh token.
+
+207
+00:13:38.285 --> 00:13:41.620
+Any time the user wants to authorize
+
+208
+00:13:41.620 --> 00:13:46.070
+the Express server to go and fetch the profile information from Facebook,
+
+209
+00:13:46.070 --> 00:13:48.470
+the user will have to explicitly supply
+
+210
+00:13:48.470 --> 00:13:52.736
+a new access token that is obtained from Facebook.
+
+211
+00:13:52.736 --> 00:13:56.665
+The one part that I have just mentioned briefly,
+
+212
+00:13:56.665 --> 00:13:58.221
+but I haven't elaborated,
+
+213
+00:13:58.221 --> 00:14:01.920
+is how does the client application, the Express server,
+
+214
+00:14:01.920 --> 00:14:07.260
+the scales, how does it register itself at the OAuth 2 service provider?
+
+215
+00:14:07.260 --> 00:14:11.440
+Now, this is where many of the OAuth 2 service providers
+
+216
+00:14:11.440 --> 00:14:16.705
+provide a way of registering an app on their site.
+
+217
+00:14:16.705 --> 00:14:18.050
+So a client application,
+
+218
+00:14:18.050 --> 00:14:20.485
+the Express servers in our example,
+
+219
+00:14:20.485 --> 00:14:25.875
+will register itself as a client application on the OAuth service provider.
+
+220
+00:14:25.875 --> 00:14:27.460
+So as you will see in the exercise,
+
+221
+00:14:27.460 --> 00:14:31.795
+the very first step that we will do is to log into Facebook with
+
+222
+00:14:31.795 --> 00:14:37.795
+our account and then create an app on Facebook site.
+
+223
+00:14:37.795 --> 00:14:44.020
+When you do that, Facebook will issue you a client app ID and a client secret.
+
+224
+00:14:44.020 --> 00:14:47.830
+This procedure applies to many other OAuth service providers because
+
+225
+00:14:47.830 --> 00:14:51.960
+this is the general flow that the OAuth 2 protocol talks about.
+
+226
+00:14:51.960 --> 00:14:57.130
+So the client app ID and the client secret are useful for us to be able
+
+227
+00:14:57.130 --> 00:15:02.320
+to prove our identity to
+
+228
+00:15:02.320 --> 00:15:08.960
+the OAuth server when we are passing an access token that we obtain from the user.
+
+229
+00:15:08.960 --> 00:15:11.500
+Now, there is also a redirect URL that you need to
+
+230
+00:15:11.500 --> 00:15:14.650
+register when you are registering the client application,
+
+231
+00:15:14.650 --> 00:15:18.520
+and you will see me performing that in the steps that I register
+
+232
+00:15:18.520 --> 00:15:23.410
+the app on the Facebook site.
+
+233
+00:15:23.410 --> 00:15:26.380
+Now, to summarize the information flow
+
+234
+00:15:26.380 --> 00:15:29.765
+that we have just briefly talked about in earlier case,
+
+235
+00:15:29.765 --> 00:15:31.855
+let me start at this point.
+
+236
+00:15:31.855 --> 00:15:35.295
+The first point to look at is the resource owner.
+
+237
+00:15:35.295 --> 00:15:39.355
+So the resource owner here is the user that
+
+238
+00:15:39.355 --> 00:15:43.660
+is going to use his or her social media account.
+
+239
+00:15:43.660 --> 00:15:45.625
+Facebook, in this example,
+
+240
+00:15:45.625 --> 00:15:49.490
+has the authentication for the user.
+
+241
+00:15:49.490 --> 00:15:54.515
+So the resource owner is the one that has the profile about the resource.
+
+242
+00:15:54.515 --> 00:15:57.760
+And this profile information for every Facebook account,
+
+243
+00:15:57.760 --> 00:16:00.535
+they were stored on the Facebook server.
+
+244
+00:16:00.535 --> 00:16:05.067
+And so the Facebook server provides the resources server here.
+
+245
+00:16:05.067 --> 00:16:08.410
+So that is the OAuth service provider that you see on
+
+246
+00:16:08.410 --> 00:16:12.691
+the right hand side of this picture here.
+
+247
+00:16:12.691 --> 00:16:17.320
+So imagine the Facebook server on the right hand side, that client application,
+
+248
+00:16:17.320 --> 00:16:18.928
+which has the rest API server,
+
+249
+00:16:18.928 --> 00:16:20.477
+the Express server that we have implemented,
+
+250
+00:16:20.477 --> 00:16:22.270
+is a client application in this case,
+
+251
+00:16:22.270 --> 00:16:24.700
+and the resource owner is the user.
+
+252
+00:16:24.700 --> 00:16:28.780
+URL front-end user, that is going to
+
+253
+00:16:28.780 --> 00:16:33.510
+authorize you to go to Facebook to verify that user's credential.
+
+254
+00:16:33.510 --> 00:16:39.245
+So when you want to access information on the client side,
+
+255
+00:16:39.245 --> 00:16:44.355
+you will first have to go and
+
+256
+00:16:44.355 --> 00:16:47.730
+authorize this client application to be able
+
+257
+00:16:47.730 --> 00:16:51.673
+to obtain access to your profile information.
+
+258
+00:16:51.673 --> 00:16:52.855
+So the client application,
+
+259
+00:16:52.855 --> 00:16:55.120
+if it is acting as a web app,
+
+260
+00:16:55.120 --> 00:17:00.095
+it will provide an appropriate button in there saying log in using Facebook.
+
+261
+00:17:00.095 --> 00:17:01.740
+And so when you click on the button,
+
+262
+00:17:01.740 --> 00:17:04.780
+essentially, the first step is initiated.
+
+263
+00:17:04.780 --> 00:17:07.375
+The user authorization request is initiated.
+
+264
+00:17:07.375 --> 00:17:09.270
+So your client application,
+
+265
+00:17:09.270 --> 00:17:10.910
+through the user agent,
+
+266
+00:17:10.910 --> 00:17:17.409
+the user agent is basically the client application, the front-end application.
+
+267
+00:17:17.409 --> 00:17:22.725
+It could be the Angular app that we have developed or that mobile app,
+
+268
+00:17:22.725 --> 00:17:25.950
+whether it is Ionic or whether it is
+
+269
+00:17:25.950 --> 00:17:30.120
+a NativeScript app that we have developed in the courses earlier in
+
+270
+00:17:30.120 --> 00:17:37.807
+the specialization or even a native app like an iOS app or an Android app.
+
+271
+00:17:37.807 --> 00:17:39.060
+All these act as the user agent.
+
+272
+00:17:39.060 --> 00:17:42.360
+So the user agent,
+
+273
+00:17:42.360 --> 00:17:45.420
+they use an authorization request process through
+
+274
+00:17:45.420 --> 00:17:48.360
+the user agent to the authorization server,
+
+275
+00:17:48.360 --> 00:17:50.500
+which is the Facebook server.
+
+276
+00:17:50.500 --> 00:17:52.235
+Now, when that gets passed in,
+
+277
+00:17:52.235 --> 00:17:55.796
+then the resource owner or the user,
+
+278
+00:17:55.796 --> 00:18:01.065
+who is trying to give access to his or her profile to this client application,
+
+279
+00:18:01.065 --> 00:18:03.690
+will have to authorize Facebook to be
+
+280
+00:18:03.690 --> 00:18:06.600
+able to share this information with the client application.
+
+281
+00:18:06.600 --> 00:18:11.250
+In the implicit flow grant approach that we are using in
+
+282
+00:18:11.250 --> 00:18:16.025
+our example here and also in the exercise that follows,
+
+283
+00:18:16.025 --> 00:18:18.390
+the implicit flow grant approach is
+
+284
+00:18:18.390 --> 00:18:22.875
+the most suitable approach when you are implementing a web app using
+
+285
+00:18:22.875 --> 00:18:26.563
+a framework like Angular or the hybrid mobile app
+
+286
+00:18:26.563 --> 00:18:30.925
+with Ionic or a NativeScript or even a native app.
+
+287
+00:18:30.925 --> 00:18:34.320
+The implicit flow grant approach is much more simpler way of
+
+288
+00:18:34.320 --> 00:18:39.170
+operating the OAuth 2 for such kind of applications.
+
+289
+00:18:39.170 --> 00:18:43.930
+So then the resource owner clicks on the log in button,
+
+290
+00:18:43.930 --> 00:18:49.710
+then the authorization server will prompt the resource owner with the information saying,
+
+291
+00:18:49.710 --> 00:18:54.330
+"This client application wants to access your profile information.
+
+292
+00:18:54.330 --> 00:18:55.725
+Do you authorize it?"
+
+293
+00:18:55.725 --> 00:18:58.965
+And so this will be popped up by Facebook,
+
+294
+00:18:58.965 --> 00:19:01.860
+and then you will click on a button there saying, "Yes,
+
+295
+00:19:01.860 --> 00:19:05.278
+I authorize this client application to access on my behalf."
+
+296
+00:19:05.278 --> 00:19:06.645
+So, on that point,
+
+297
+00:19:06.645 --> 00:19:08.680
+the authorization server on Facebook,
+
+298
+00:19:08.680 --> 00:19:11.190
+the OAuth 2 authorization server on Facebook,
+
+299
+00:19:11.190 --> 00:19:13.380
+will generate an access token.
+
+300
+00:19:13.380 --> 00:19:15.105
+To generate this access token,
+
+301
+00:19:15.105 --> 00:19:20.405
+it will make use of the client ID for this client application,
+
+302
+00:19:20.405 --> 00:19:22.535
+the Express server application that we register.
+
+303
+00:19:22.535 --> 00:19:28.165
+So the client ID should be part of the user agent that this user uses.
+
+304
+00:19:28.165 --> 00:19:33.093
+So this client ID will be embedded into the Angular app,
+
+305
+00:19:33.093 --> 00:19:38.585
+the Ionic or the NativeScript app or even an iOS or an Android app.
+
+306
+00:19:38.585 --> 00:19:40.560
+So the client ID will then be used by
+
+307
+00:19:40.560 --> 00:19:43.410
+the user agent to turn the authorization server saying,
+
+308
+00:19:43.410 --> 00:19:48.108
+"This client app application wants access to my profile,
+
+309
+00:19:48.108 --> 00:19:52.704
+and I am willing to authorize you to allow the access to the profile."
+
+310
+00:19:52.704 --> 00:19:53.760
+So, at that point,
+
+311
+00:19:53.760 --> 00:19:59.290
+the authorization server will send an access token to the user agent in this case.
+
+312
+00:19:59.290 --> 00:20:02.670
+So, remember, this access token comes into the user agent,
+
+313
+00:20:02.670 --> 00:20:09.180
+which is the mobile app or their Angular app that is implemented by us.
+
+314
+00:20:09.180 --> 00:20:12.870
+Then this user agent will take this access token and
+
+315
+00:20:12.870 --> 00:20:18.479
+then pass this access token over to that client application.
+
+316
+00:20:18.479 --> 00:20:20.310
+So the OAuth to log in,
+
+317
+00:20:20.310 --> 00:20:23.305
+but the access token will be passed onto the client application,
+
+318
+00:20:23.305 --> 00:20:25.200
+the Express server in this case,
+
+319
+00:20:25.200 --> 00:20:32.340
+at a particular route on the user's router,
+
+320
+00:20:32.340 --> 00:20:37.465
+the authentication route on the client application site.
+
+321
+00:20:37.465 --> 00:20:41.000
+Now, previously, we saw the use of local authentication,
+
+322
+00:20:41.000 --> 00:20:45.985
+where we sent a request to slash user slash log in.
+
+323
+00:20:45.985 --> 00:20:48.250
+Now, for this to work in our app,
+
+324
+00:20:48.250 --> 00:20:50.580
+we will set up another one on slash users,
+
+325
+00:20:50.580 --> 00:20:54.095
+slash Facebook, slash token, and so on.
+
+326
+00:20:54.095 --> 00:21:02.500
+So another URL on which we provide this access token over to the Express server.
+
+327
+00:21:02.500 --> 00:21:06.280
+Now, when this access token is obtained by the Express server,
+
+328
+00:21:06.280 --> 00:21:09.630
+the Express server will take this access token,
+
+329
+00:21:09.630 --> 00:21:14.240
+and then together with its client ID and the client secret,
+
+330
+00:21:14.240 --> 00:21:20.200
+it will send this information over to the authorization server.
+
+331
+00:21:20.200 --> 00:21:25.140
+And the authorization server will then allow their client application
+
+332
+00:21:25.140 --> 00:21:30.565
+to access the resource server in order to obtain the profile information.
+
+333
+00:21:30.565 --> 00:21:35.060
+And so the profile information will be sent back in step number six,
+
+334
+00:21:35.060 --> 00:21:37.890
+back to the client application in this case.
+
+335
+00:21:37.890 --> 00:21:42.015
+So when the client application obtains the profile information for the user,
+
+336
+00:21:42.015 --> 00:21:46.380
+then the client application will create a new account for
+
+337
+00:21:46.380 --> 00:21:51.785
+the user on each site if an account doesn't exist.
+
+338
+00:21:51.785 --> 00:21:56.090
+If that user has already logged in earlier using their Facebook ID,
+
+339
+00:21:56.090 --> 00:22:00.045
+an account will already exist so that client application and the Rest API server will
+
+340
+00:22:00.045 --> 00:22:05.485
+simply crosscheck to see that this user account already exists.
+
+341
+00:22:05.485 --> 00:22:06.865
+And, at that point,
+
+342
+00:22:06.865 --> 00:22:12.550
+the user is authenticated to the third party log in functionality
+
+343
+00:22:12.550 --> 00:22:18.321
+provided by the OAuth 2 authentication service of Facebook.
+
+344
+00:22:18.321 --> 00:22:23.275
+At that point, then the client application will generate a JSON Web Token,
+
+345
+00:22:23.275 --> 00:22:26.010
+in the example that we will implement and exercise,
+
+346
+00:22:26.010 --> 00:22:33.040
+and then pass this JSON Web Token back to the user agent or the front-end application,
+
+347
+00:22:33.040 --> 00:22:35.845
+or Angular app, or the Ionic app,
+
+348
+00:22:35.845 --> 00:22:38.590
+or the NativeScript app.
+
+349
+00:22:38.590 --> 00:22:45.160
+Then the JSON Web Token will be subsequently used by the user in order
+
+350
+00:22:45.160 --> 00:22:48.790
+to authenticate himself whenever he or she wants to
+
+351
+00:22:48.790 --> 00:22:53.145
+access any resources stored on the Express server.
+
+352
+00:22:53.145 --> 00:22:55.505
+So, once you obtain the JSON Web Token,
+
+353
+00:22:55.505 --> 00:23:00.975
+all subsequent operations, you have already seen how to do that with JSON Web Token.
+
+354
+00:23:00.975 --> 00:23:03.565
+So, once you obtain the JSON Web Token,
+
+355
+00:23:03.565 --> 00:23:05.070
+your job is done,
+
+356
+00:23:05.070 --> 00:23:10.150
+and then you can proceed forward with the normal operation from that point onwards.
+
+357
+00:23:10.150 --> 00:23:12.940
+Now, when the JSON Web Token expires,
+
+358
+00:23:12.940 --> 00:23:17.618
+then you have to go through the whole process of re-authenticating yourself and,
+
+359
+00:23:17.618 --> 00:23:22.990
+subsequently, allow the users to access information on your site.
+
+360
+00:23:22.990 --> 00:23:29.710
+So, with this quick understanding of how OAuth 2 operations work,
+
+361
+00:23:29.710 --> 00:23:33.385
+again, as you see, there is a lot of details here.
+
+362
+00:23:33.385 --> 00:23:38.950
+But, fortunately, we don't have to deal with all these details because we are going to be
+
+363
+00:23:38.950 --> 00:23:46.285
+using a node module that takes care of much of these details on our behalf.
+
+364
+00:23:46.285 --> 00:23:52.195
+Since we have already set up our Express server to use Passport,
+
+365
+00:23:52.195 --> 00:24:00.980
+we can now use another node module code as Passport-Facebook-Token module.
+
+366
+00:24:00.980 --> 00:24:04.595
+The Passport-Facebook-Token module essentially implements
+
+367
+00:24:04.595 --> 00:24:08.580
+the implicit grant approach that I talked about earlier.
+
+368
+00:24:08.580 --> 00:24:11.320
+And then you can initialize
+
+369
+00:24:11.320 --> 00:24:18.160
+a new strategy in your Passport strategy, within your application.
+
+370
+00:24:18.160 --> 00:24:22.720
+And so that Passport-Facebook-Token module enables you to set up
+
+371
+00:24:22.720 --> 00:24:31.090
+a new Passport authentication strategy to use Facebook-based OAuth 2 API.
+
+372
+00:24:31.090 --> 00:24:36.085
+And so to make use of this module,
+
+373
+00:24:36.085 --> 00:24:41.615
+you install this by saying past npm install passport- facebook-token,
+
+374
+00:24:41.615 --> 00:24:44.980
+minus minus save, and then once you installed that,
+
+375
+00:24:44.980 --> 00:24:51.010
+then you will configure a Facebook strategy within your application, and, thereafter,
+
+376
+00:24:51.010 --> 00:24:57.810
+make use of this to configure the strategy for your Passport to
+
+377
+00:24:57.810 --> 00:25:04.990
+make use of if we are making use of the OAuth 2-based authentication for our application.
+
+378
+00:25:04.990 --> 00:25:09.270
+With this quick understanding of OAuth 2,
+
+379
+00:25:09.270 --> 00:25:11.770
+let's move on to the exercise,
+
+380
+00:25:11.770 --> 00:25:16.630
+where we will configure our Express server to indeed make use of
+
+381
+00:25:16.630 --> 00:25:20.920
+this implicit grant approach to enable us to
+
+382
+00:25:20.920 --> 00:25:25.450
+verify our identity to the Express server and,
+
+383
+00:25:25.450 --> 00:25:29.745
+thereafter, gain access to the resources, the dishes,
+
+384
+00:25:29.745 --> 00:25:38.180
+the promotions and the leaders' information that is stored on our Express server.
